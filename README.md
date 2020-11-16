@@ -1,5 +1,5 @@
 # Lab 12: Keyboard or mouse controlled chasing LED | Ryan Toeung
-## Video Link:
+**DEMO VIDEO :**
 * This program allows for the user to use a keyboard as a controller for a chasing LED model.
 * When the "p" key is pressed, the system will pause the LED at its current position until another "p" is pressed.
   * This works as a play or pause key
