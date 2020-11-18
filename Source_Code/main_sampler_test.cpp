@@ -178,11 +178,15 @@ Ps2Core ps2(get_slot_addr(BRIDGE_BASE, S11_PS2));
 DdfsCore ddfs(get_slot_addr(BRIDGE_BASE, S12_DDFS));
 AdsrCore adsr(get_slot_addr(BRIDGE_BASE, S13_ADSR), &ddfs);
 
-
 int main() {
    //uint8_t id, ;
-
-   while (1) {
-      kbChasingLED(&ps2, &led, 16);
-   } //while
-} //main
+	int id;
+	id = ps2_p->init();
+	uart.disp("\n\rPS2 device (1-keyboard / 2-mouse): ");
+	id = ps2_p->init();
+	uart.disp(id);
+	uart.disp("\n\r");
+	while (1) {
+		kbChasingLED(&ps2, &led, 16);
+	} //while
+} //
