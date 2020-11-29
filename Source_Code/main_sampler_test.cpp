@@ -166,6 +166,16 @@ void ps2_check(Ps2Core *ps2_p) {
 
 }
 
+int determinePs2ID(Ps2Core *ps2_p)
+{
+	int id;
+	uart.disp("\n\rPS2 device (1-keyboard / 2-mouse): ");
+	id = ps2_p->init();
+	uart.disp(id);
+	uart.disp("\n\r");
+	return id;
+}
+
 GpoCore led(get_slot_addr(BRIDGE_BASE, S2_LED));
 GpiCore sw(get_slot_addr(BRIDGE_BASE, S3_SW));
 XadcCore adc(get_slot_addr(BRIDGE_BASE, S5_XDAC));
@@ -180,12 +190,7 @@ AdsrCore adsr(get_slot_addr(BRIDGE_BASE, S13_ADSR), &ddfs);
 
 int main() {
    //uint8_t id, ;
-	int id;
-	id = ps2_p->init();
-	uart.disp("\n\rPS2 device (1-keyboard / 2-mouse): ");
-	id = ps2_p->init();
-	uart.disp(id);
-	uart.disp("\n\r");
+	int id = determinePs2ID(&ps2);
 	while (1) {
 		kbChasingLED(&ps2, &led, 16);
 	} //while
